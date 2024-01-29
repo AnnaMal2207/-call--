@@ -53,16 +53,16 @@ p_2
 #Значение B(K0, N; p*)
 B_K0_N_p1 = 0
 if (p_1 > 1) {p_1 = 1}
-for (k in K_0:N) {B_K0_N_p1 = B_K0_N_p1 + dbinom(round(k), N, p_1) * S_0}
+for (k in K_0:N) {B_K0_N_p1 = B_K0_N_p1 + dbinom(round(k), N, p_1)}
 B_K0_N_p1
 
 #Значение B(K0, N; p~)
 B_K0_N_p_2 = 0
 if (p_2 > 1) {p_2 = 1}
-for (k in K_0:N) {B_K0_N_p_2 = B_K0_N_p_2 + dbinom(round(k), N, p_2) * S_0}
-B_K0_N_p_2 = B_K0_N_p_2 * K * exp(-r * N)
+for (k in K_0:N) {B_K0_N_p_2 = B_K0_N_p_2 + dbinom(round(k), N, p_2)}
 B_K0_N_p_2
+
 # Рассчитываем справедливую цену опциона
-if (K_0 <= N) {C_N = B_K0_N_p1 - K * ((1 + r)^(-N)) * B_K0_N_p_2} else {C_N = 0}
+if (K_0 <= N) {C_N = S_0 * B_K0_N_p1 - K * ((1 + r)^(-N)) * B_K0_N_p_2} else {C_N = 0}
 
 print(C_N)
